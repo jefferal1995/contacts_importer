@@ -26,9 +26,11 @@ class ContactWorker
       credit_card = create_credit_card(contact, import, row)
       break if credit_card.blank?
 
-      import.logs.create(message: 'Finishing loading CSV file')
+      import.logs.create(message: 'Finishing loading contact')
       import.update(status: 'finished')
     end
+
+    import.logs.create(message: 'Finishing loading CSV file')
   rescue => e
     imports.logs.create(message: "Failed unexpectedly #{e.message}")
     imports.update(status: 'failed')
