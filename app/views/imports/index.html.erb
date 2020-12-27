@@ -1,0 +1,35 @@
+<div class="row">
+  <%= form_for :import do |f| %>
+    <%= f.file_field :contacts_file, accept: ".csv" %>
+    <%= f.submit 'Upload file', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">File name</th>
+      <th scope="col">Creation date</th>
+      <th scope="col">Status</th>
+      <th scope="col">Download</th>
+      <th scope="col">Show</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @imports.each_with_index do |import, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= import.contacts_file.filename %></td>
+          <td><%= import.created_at %></td>
+          <td><%= import.status %></td>
+          <td><%= link_to "Download", rails_blob_path(import.contacts_file) %></td>
+          <td><%= link_to 'View logs', import_path(import), class:'btn btn-primary' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if @imports.count == 0  %>
+    <p> No imports done yet, please click on Create Import button to start one</p>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+<div class="row">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Message</th>
+      <th scope="col">Time</th>
+      <th scope="col">Created at</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @logs.each_with_index do |log, index| %>
+      <tr>
+        <td><%= @logs.size - index %></td>
+        <td><%= log.message %></td>
+        <td><%= log.created_at %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <% if @logs.count == 0  %>
+    <p> No logs generated in this import</p>
+  <% end %>
+</div>

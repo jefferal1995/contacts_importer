@@ -29,6 +29,8 @@ gem 'bootstrap', '~> 5.0.0.alpha3'
 gem 'jquery-rails'
 # For database
 gem 'pg'
+# For background jobs
+gem 'sidekiq'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
