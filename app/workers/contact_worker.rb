@@ -29,9 +29,9 @@ class ContactWorker
       import.logs.create(message: 'Finishing loading CSV file')
       import.update(status: 'finished')
     end
-    #  rescue => e
-    #imports.logs.create(message: "Failed unexpectedly #{e.message}")
-    #imports.update(status: 'failed')
+  rescue => e
+    imports.logs.create(message: "Failed unexpectedly #{e.message}")
+    imports.update(status: 'failed')
   end
 
   private
