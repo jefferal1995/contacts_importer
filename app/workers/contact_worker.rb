@@ -29,9 +29,9 @@ class ContactWorker
       import.logs.create(message: 'Finishing loading CSV file')
       import.update(status: 'finished')
     end
-    #  rescue => e
-    #imports.logs.create(message: "Failed unexpectedly #{e.message}")
-    #imports.update(status: 'failed')
+  rescue => e
+    imports.logs.create(message: "Failed unexpectedly #{e.message}")
+    imports.update(status: 'failed')
   end
 
   private
@@ -139,7 +139,7 @@ class ContactWorker
 
     existing_credit_card = contact.credit_cards.find_by(encrypted_number: credit_card_attributes[:encrypted_number])
     credit_card = if existing_credit_card.present?
-                    import.logs.create(message: "Found existing credit card #{credit_card.last_four_numbers}")
+                    import.logs.create(message: "Found existing credit card #{existing_credit_card.last_four_numbers}")
                     existing_credit_card
                   else
                     import.logs.create(message: "Creating a new credit card ***#{row['card_number'][-4..-1]}")
