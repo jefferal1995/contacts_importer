@@ -89,7 +89,7 @@ class ContactWorker
       number: row['phone'],
     }
 
-    existing_phone = contact.phones.find_by(number: row['phone'])
+    existing_phone = contact.phones.where("regexp_replace(number, '[^0-9]+', '', 'g') = ?", row['phone'].tr('^0-9', '')).first
     phone = if existing_phone.present?
                 import.logs.create(message: "Found existing phone #{existing_phone.number}")
                 existing_phone

@@ -17,7 +17,7 @@
       <tr>
         <td><%= index + 1 %></td>
         <td><%= contact.name %></td>
-        <td><%= contact.birth_date %></td>
+        <td><%= contact.birth_date.strftime('%Y %B %d') %></td>
         <td><%= contact.email %></td>
         <td><%= raw contact.addresses.map{ |address| address.address }.join('<br />') %></td>
         <td><%= raw contact.phones.map{ |phone| phone.number }.join('<br />') %></td>
