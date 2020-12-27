@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to the data loader</h1>
+    <p class="lead">Here you can start to load your CSV files of contacts</p>
+    <hr class="my-4">
+    <p>Please follow the link in the button to get started loading files</p>
+    <p class="lead">
+      <% if current_user.present? %>
+        <%= link_to "Get started", "/", class: "btn btn-primary btn-lg", role: "button" %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "btn btn-primary btn-lg", role: "button" %>
+      <% end %>
+    </p>
+  </div>
+</div>
