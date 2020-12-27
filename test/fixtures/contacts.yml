@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  birth_date: 2020-12-26
+  email: MyText
+
+two:
+  name: MyText
+  birth_date: 2020-12-26
+  email: MyText

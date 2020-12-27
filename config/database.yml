@@ -5,21 +5,27 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  user: contact_importer_user
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: contact_importer_development
+  password: contact_importer_development_password
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: contact_importer_test
+  password: contact_importer_test_password
 
+# Change values according to production host and specify a random password
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: contact_importer_production

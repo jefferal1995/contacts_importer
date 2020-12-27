@@ -10,7 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_26_212948) do
+ActiveRecord::Schema.define(version: 2020_12_27_002357) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.text "address"
+    t.bigint "contact_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_addresses_on_contact_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.text "name"
+    t.date "birth_date"
+    t.text "email"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.text "encrypted_number"
+    t.text "last_four_numbers"
+    t.bigint "contact_id", null: false
+    t.bigint "franchise_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_credit_cards_on_contact_id"
+    t.index ["franchise_id"], name: "index_credit_cards_on_franchise_id"
+  end
+
+  create_table "franchises", force: :cascade do |t|
+    t.text "name"
+    t.text "start_numbers", default: [], array: true
+    t.text "lengths", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.text "message"
+    t.bigint "import_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["import_id"], name: "index_logs_on_import_id"
+  end
+
+  create_table "phones", force: :cascade do |t|
+    t.string "indicative"
+    t.text "number"
+    t.bigint "contact_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_phones_on_contact_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
