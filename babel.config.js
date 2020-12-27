@@ -38,8 +38,8 @@ module.exports = function(api) {
     ].filter(Boolean),
     plugins: [
       'babel-plugin-macros',
-      '@babel/plugin-syntax-dynamic-import',
-      isTestEnv && 'babel-plugin-dynamic-import-node',
+      '@babel/plugin-syntax-dynamic-imports',
+      isTestEnv && 'babel-plugin-dynamic-imports-node',
       '@babel/plugin-transform-destructuring',
       [
         '@babel/plugin-proposal-class-properties',
