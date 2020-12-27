@@ -23,7 +23,7 @@ class ImportsController < ApplicationController
   end
 
   def show
-    @import = current_user.imports.find_by_id(params[:id])
+    @import = current_user.imports.includes(:logs).find_by_id(params[:id])
     @logs = @import.logs.order(created_at: :desc)
   end
 
